@@ -16,6 +16,7 @@ namespace Inoxico.TechnicalQuestions.Answers
                 if (points[i] > points[i + 1])
                 {
                     var declineInitial = points[i] - points[i + 1];
+                    var declineInitialIndex = i;
                     var hitIncline = false;
                     var firstInclinePoint = 0;
                     for (i = i + 1; i < pointsLength - 1; i++)
@@ -39,6 +40,7 @@ namespace Inoxico.TechnicalQuestions.Answers
                         }
                         else
                         {
+                            declineInitial = points[declineInitialIndex] - points[i + 1];
                             if (hitIncline && points[i] >= points[i + 1])
                             {
                                 i--;
