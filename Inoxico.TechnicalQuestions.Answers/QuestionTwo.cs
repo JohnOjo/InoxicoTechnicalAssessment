@@ -13,7 +13,8 @@ namespace Inoxico.TechnicalQuestions.Answers
             var pointsLength = points.Length;
             for (int i = 0; i < pointsLength-1; i++)
             {
-                if (points[i] > points[i + 1])
+                // if decline and decline is above ground
+                if (points[i] > points[i + 1] && points[i] >= 0)
                 {
                     var declineInitial = points[i] - points[i + 1];
                     var declineInitialIndex = i;
