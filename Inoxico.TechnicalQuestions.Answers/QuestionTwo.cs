@@ -22,6 +22,7 @@ namespace Inoxico.TechnicalQuestions.Answers
                     var firstInclinePoint = 0;
                     for (i = i + 1; i < pointsLength - 1; i++)
                     {
+                        // if first incline
                         if (!hitIncline && points[i] < points[i + 1])
                         {
                             var minimun = Math.Min(declineInitial, points[i + 1] - points[i]);
@@ -31,7 +32,7 @@ namespace Inoxico.TechnicalQuestions.Answers
                             firstInclinePoint = i;
                             hitIncline = true;
                         }
-                        else if (hitIncline && points[i] < points[i + 1])
+                        else if (hitIncline && points[i] < points[i + 1]) // if consecutive incline
                         {
                             var minimun = Math.Min(declineInitial, points[i + 1] - points[firstInclinePoint]);
                             if (deepestPit < minimun)
@@ -42,7 +43,7 @@ namespace Inoxico.TechnicalQuestions.Answers
                         else
                         {
                             declineInitial = points[declineInitialIndex] - points[i + 1];
-                            if (hitIncline && points[i] >= points[i + 1])
+                            if (hitIncline && points[i] >= points[i + 1]) // if completely past pit (new pit forming)
                             {
                                 i--;
                                 break;
