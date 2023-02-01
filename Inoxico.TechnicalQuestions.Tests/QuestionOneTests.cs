@@ -15,7 +15,7 @@ namespace Inoxico.TechnicalQuestions.Tests
         }
 
         [Fact]
-        public void Case2Test()
+        public void Case2TestPositive()
         {
             var input = $"Forget CVs..Save time . x x";
             var outcome = QuestionOne.GetLongestSentance(input);
