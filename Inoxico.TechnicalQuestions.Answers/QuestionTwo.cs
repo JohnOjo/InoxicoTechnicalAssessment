@@ -13,27 +13,41 @@ namespace Inoxico.TechnicalQuestions.Answers
             var pointsLength = points.Length;
             for (int i = 0; i < pointsLength-1; i++)
             {
-                if (points[i] < points[i + 1])
-                {
-
-                }
-                else if (points[i] > points[i + 1])
+                if (points[i] > points[i + 1])
                 {
                     var declineInitial = points[i] - points[i + 1];
                     var hitIncline = false;
+                    var firstInclinePoint = 0;
                     for (i = i + 1; i < pointsLength - 1; i++)
                     {
-                        if (points[i] < points[i + 1])
+                        if (!hitIncline && points[i] < points[i + 1])
                         {
-                            deepestPit = Math.Min(declineInitial, points[i + 1] - points[i]);
+                            var minimun = Math.Min(declineInitial, points[i + 1] - points[i]);
+                            if (deepestPit < minimun)
+                                deepestPit = minimun;
+
+                            firstInclinePoint = i;
                             hitIncline = true;
                         }
-
-                        if (hitIncline && points[i] >= points[i + 1])
+                        else if (hitIncline && points[i] < points[i + 1])
                         {
-                            i--;
-                            break;
+                            var minimun = Math.Min(declineInitial, points[i + 1] - points[firstInclinePoint]);
+                            if (deepestPit < minimun)
+                                deepestPit = minimun;
+
+                            hitIncline = true;
                         }
+                        else
+                        {
+                            if (hitIncline && points[i] >= points[i + 1])
+                            {
+                                i--;
+                                break;
+                            }
+                            hitIncline = false;
+                        }
+
+                        
                     }
                 }
             }
