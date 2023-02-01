@@ -22,6 +22,12 @@ namespace Inoxico.TechnicalQuestions.Answers
                     var firstInclinePoint = 0;
                     for (i = i + 1; i < pointsLength - 1; i++)
                     {
+                        // if flat line
+                        if (points[i] == points[i+1])
+                        {
+                            break;
+                        }
+
                         // if first incline
                         if (!hitIncline && points[i] < points[i + 1])
                         {
