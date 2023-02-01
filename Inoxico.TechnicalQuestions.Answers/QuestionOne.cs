@@ -5,13 +5,22 @@ namespace Inoxico.TechnicalQuestions.Answers
     {
         public static int GetLongestSentance(string s)
         {
+            if(string.IsNullOrEmpty(s))
+                throw new Exception("s is null or empty");
+
             string [] splitByPunctuation = s.Split(new char[] { '.', '!', '?' });
 
             var maxWords = 0;
-            foreach (string word in splitByPunctuation)
+            foreach (string sentence in splitByPunctuation)
             {
-                var words = word.Split(' ');
-                var wordLength = word.Length;
+                var words = sentence.Split(' ');
+                var wordLength = 0;
+                foreach (string word in words)
+                {
+                    if (word != "")
+                        wordLength++;
+                }
+
                 if (maxWords < wordLength)
                 {
                     maxWords = wordLength;
